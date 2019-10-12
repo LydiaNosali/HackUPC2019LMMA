@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.hack_upc_2019_lmma">
+    package="com.example.hackupc2019lama">
 
     <!-- io.flutter.app.FlutterApplication is an android.app.Application that
          calls FlutterMain.startInitialization(this); in its onCreate method.
@@ -8,7 +8,7 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="hack_upc_2019_lmma"
+        android:label="hackupc2019lama"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

@@ -1,6 +1,6 @@
-# hack_upc_2019_lmma
+# hackupc2019lama
 
-A new Flutter project.
+A new Flutter application.
 
 ## Getting Started
 

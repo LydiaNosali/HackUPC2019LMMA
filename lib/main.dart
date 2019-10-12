@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'HomePage.dart';
 
 void main() => runApp(MyApp());
 
@@ -7,105 +8,218 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: SplashScreen(),
+        routes: <String, WidgetBuilder>{
+          "/WelcomeScreen": (BuildContext context) => new WelcomeScreen(),
+          "/HomePage": (BuildContext context) => new HomePage(),
+        },
+        debugShowCheckedModeBanner: false);
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
+class SplashScreen extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State createState() {
+    return new SplashScreenState();
+  }
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
+class SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(
+        Duration(
+          seconds: 3,
+        ), () {
+      Navigator.of(context).pushReplacementNamed('/WelcomeScreen');
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+    // TODO: implement build
+    return new Scaffold(
+        body: GestureDetector(
+            onDoubleTap: () {
+              Navigator.of(context).pushReplacementNamed('/WelcomeScreen');
+            },
+            child: Center(
+                child: RaisedButton(
+              child: Text('Continue'),
+              onPressed: () {},
+            ))));
   }
+}
+
+class WelcomeScreen extends StatefulWidget {
+  @override
+  State createState() {
+    return new WelcomeScreenState();
+  }
+}
+
+class WelcomeScreenState extends State<WelcomeScreen> {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return new Scaffold(
+        body: Stack(
+      children: <Widget>[
+        Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 60),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Image.asset(
+                  'assets/images/logo.png',
+                  width: 80,
+                ),
+                SizedBox(
+                  height: 32,
+                ),
+                Text(
+                  '''Welcome to Mindtalks''',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: ThemeColors.DarkGrey,
+                      fontFamily: 'Montserrat',
+                      fontSize: 28),
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  // TODO: add description
+                  '''Votre plateforme de services en ligne pour les lignes des bus préférée.''',
+                  style: TextStyle(
+                      color: ThemeColors.LightGrey,
+                      fontFamily: 'Raleway',
+                      fontWeight: FontWeight.w700,
+                      fontSize: 14),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: 64,
+                ),
+              ],
+            ),
+          ),
+        ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Container(
+                width: MediaQuery.of(context).size.width - 64,
+                height: 52,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    gradient: LinearGradient(
+                      colors: [
+                        ThemeColors.Magenta,
+                        ThemeColors.mainRed,
+                        ThemeColors.Orange,
+                      ],
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                          color: ShadowColors.RedShadow,
+                          blurRadius: 6,
+                          offset: Offset(0, 4))
+                    ]),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: FlatButton(
+                      splashColor: Color(0x25FFDDDD),
+                      highlightColor: Colors.transparent,
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      onPressed: () {
+                        Navigator.of(context).pushNamed('/HomePage');
+                      },
+                      child: Text(
+                        "SIGN IN",
+                        style: new TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.w700,
+                            fontSize: 16),
+                      )),
+                ),
+              ),
+              SizedBox(
+                height: 16,
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width - 64,
+                height: 52,
+                decoration: BoxDecoration(
+                  border: Border.all(color: ThemeColors.mainRed, width: 2),
+                  borderRadius: BorderRadius.circular(100),
+                  color: Colors.white,
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: FlatButton(
+                      splashColor: Color(0x75FFDDDD),
+                      highlightColor: Colors.transparent,
+                      clipBehavior: Clip.hardEdge,
+                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      onPressed: () {
+                        Navigator.of(context).pushNamed("/SignUpPage");
+                      },
+                      child: Text(
+                        "SIGN UP",
+                        style: new TextStyle(
+                            color: ThemeColors.mainRed,
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.w700,
+                            fontSize: 16),
+                      )),
+                ),
+              ),
+              SizedBox(
+                height: 32,
+              ),
+            ],
+          ),
+        )
+      ],
+    ));
+  }
+}
+
+// Colors
+class ThemeColors {
+  static const Color mainRed = Color(0xFFF05159);
+
+  static const Color TiryadicBlue = Color(0xFF6AC9D2);
+  static const Color TiryadicLightBlue = Color(0xFFCDEDF0);
+
+  static const Color TiryadicYellow = Color(0xFFECDD75);
+  static const Color TiryadicLightYellow = Color(0xFFF9F4D1);
+
+  static const Color LightGrey = Color(0xFFB0BEC5);
+  static const Color DarkGrey = Color(0xFF546E7A);
+
+  static const Color Orange = Color(0xFFF16358);
+  static const Color Magenta = Color(0xFFF05176);
+}
+
+class ShadowColors {
+  static const Color VeryLightShadow = Color.fromARGB(10, 0, 0, 0);
+  static const Color LightShadow = Color.fromARGB(30, 0, 0, 0);
+  static const Color MediumShadow = Color.fromARGB(60, 0, 0, 0);
+  static const Color RegularShadow = Color.fromARGB(130, 0, 0, 0);
+
+  static const Color lightRedShadow = Color(0x33F05159);
+  static const Color RedShadow = Color(0x77F05159);
+  static const Color BlueShadow = Color(0x776AC9D2);
+  static const Color YellowShadow = Color(0x77ECDD75);
 }

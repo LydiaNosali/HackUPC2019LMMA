@@ -1,5 +1,5 @@
-name: hack_upc_2019_lmma
-description: A new Flutter project.
+name: hackupc2019lama
+description: A new Flutter application.
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -34,11 +34,23 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+  assets:
+   - assets/Avatar.png
+   - assets/msg.png
+   - assets/frnds.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  fonts:
+    - family: Raleway
+      fonts:
+        - asset: assets\Raleway-Regular.ttf
+
+    - family: Montserrat
+      fonts:
+        - asset: assets\Montserrat-Regular.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:

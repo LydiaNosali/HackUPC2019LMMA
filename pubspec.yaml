@@ -19,6 +19,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_range_slider: ^1.4.0
+  flare_flutter: ^1.6.2
+  
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -35,9 +38,14 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
   assets:
+   - assets/logo.png
+   - assets/logoColor.png
+   - assets/wallpaper.png
    - assets/Avatar.png
    - assets/msg.png
    - assets/frnds.png
+   - assets/Anim.flr
+   - assets/Call.flr
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

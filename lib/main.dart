@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'HomePage.dart';
+import 'Call.dart';
+import 'accept.dart';
+import 'Settings.dart';
+import 'Slides.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,13 +13,50 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
+        theme: new ThemeData(
+          primaryColor: Color(0xFFF05159),
+          textTheme: Theme.of(context).textTheme.copyWith(
+                title: new TextStyle(
+                    color: ThemeColors.DarkGrey,
+                    fontFamily: 'Raleway',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24),
+                body1: new TextStyle(
+                    color: ThemeColors.LightGrey,
+                    fontFamily: 'Raleway',
+                    fontSize: 14),
+                body2: new TextStyle(
+                    color: ThemeColors.LightGrey,
+                    fontFamily: 'Montserrat',
+                    fontSize: 11),
+                headline: new TextStyle(
+                    color: Colors.black, fontFamily: 'Raleway', fontSize: 18),
+                //
+                subhead: new TextStyle(
+                    color: ThemeColors.mainRed,
+                    fontFamily: 'Montserrat',
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+
+                /// i used this in Fieled Texts in TextFields
+                display1: new TextStyle(
+                    color: Colors.black87, fontFamily: 'Raleway', fontSize: 18),
+
+                /// i used this in hintTexts in TextFields
+                display2: new TextStyle(
+                    color: ThemeColors.LightGrey,
+                    fontFamily: 'Raleway',
+                    fontSize: 18),
+              ),
         ),
         home: SplashScreen(),
         routes: <String, WidgetBuilder>{
           "/WelcomeScreen": (BuildContext context) => new WelcomeScreen(),
           "/HomePage": (BuildContext context) => new HomePage(),
+          "/Call": (BuildContext context) => new Call(),
+          "/accept": (BuildContext context) => new accept(),
+          "/settings": (BuildContext context) => new Settings(),
+          "/slides": (BuildContext context) => new Slides(),
         },
         debugShowCheckedModeBanner: false);
   }
@@ -77,14 +118,14 @@ class WelcomeScreenState extends State<WelcomeScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Image.asset(
-                  'assets/images/logo.png',
-                  width: 80,
+                  'assets/logoColor.png',
+                  width: 140,
                 ),
                 SizedBox(
-                  height: 32,
+                  height: 8,
                 ),
                 Text(
-                  '''Welcome to Mindtalks''',
+                  '''Welcome to MindBind''',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: ThemeColors.DarkGrey,
@@ -96,12 +137,12 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                 ),
                 Text(
                   // TODO: add description
-                  '''Votre plateforme de services en ligne pour les lignes des bus préférée.''',
+                  '''Gender, Race and Background diverse minds perform better!''',
                   style: TextStyle(
                       color: ThemeColors.LightGrey,
                       fontFamily: 'Raleway',
                       fontWeight: FontWeight.w700,
-                      fontSize: 14),
+                      fontSize: 16),
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(
@@ -121,13 +162,7 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                 height: 52,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(100),
-                    gradient: LinearGradient(
-                      colors: [
-                        ThemeColors.Magenta,
-                        ThemeColors.mainRed,
-                        ThemeColors.Orange,
-                      ],
-                    ),
+                    color: ThemeColors.mainRed,
                     boxShadow: [
                       BoxShadow(
                           color: ShadowColors.RedShadow,
@@ -172,7 +207,7 @@ class WelcomeScreenState extends State<WelcomeScreen> {
                       clipBehavior: Clip.hardEdge,
                       materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                       onPressed: () {
-                        Navigator.of(context).pushNamed("/SignUpPage");
+                        Navigator.of(context).pushNamed("/slides");
                       },
                       child: Text(
                         "SIGN UP",
